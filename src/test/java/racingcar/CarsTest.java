@@ -31,4 +31,36 @@ public class CarsTest {
             new Cars().registerCars("pobi");
         });
     }
+
+    @Test
+    public void 이동_횟수_입력() {
+        Cars cars = new Cars();
+        String count = "5";
+        cars.inputCount(count);
+        Assertions.assertEquals(Integer.parseInt(count), cars.getCount());
+    }
+
+    @Test
+    public void 이동_횟수_미입력_테스트() {
+        Cars cars = new Cars();
+        Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
+            cars.inputCount(null);
+        });
+    }
+
+    @Test
+    public void 이동_횟수_숫자가_아닌_문자_입력_테스트() {
+        Cars cars = new Cars();
+        Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
+            cars.inputCount("null");
+        });
+    }
+
+    @Test
+    public void 이동_횟수_0_입력_테스트() {
+        Cars cars = new Cars();
+        Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
+            cars.inputCount("0");
+        });
+    }
 }
