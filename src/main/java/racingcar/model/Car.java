@@ -1,9 +1,18 @@
 package racingcar.model;
 
+import racingcar.utils.RandomNumberUtil;
+
 public class Car {
 
     private final String name;
+
     private int progress = 0;
+
+    private RandomNumberUtil randomNumberUtil;
+
+    public void setRandomNumberUtil(RandomNumberUtil randomNumberUtil) {
+        this.randomNumberUtil = randomNumberUtil;
+    }
 
     public Car(String name) {
         checkName(name);
@@ -19,7 +28,11 @@ public class Car {
         }
     }
 
-    void increaseProgress(int num) {
+    public void increase() {
+        increaseProgress(randomNumberUtil.generateNumber());
+    }
+
+    private void increaseProgress(int num) {
         if (num >= 4) {
             progress++;
         }
