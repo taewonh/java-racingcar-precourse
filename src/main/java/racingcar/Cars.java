@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Cars {
 
-    private List<Car> cars = new ArrayList<>();
+    private final List<Car> cars = new ArrayList<>();
     public void registerCars(String names) {
         checkNames(names);
         String[] split = names.split(",");
