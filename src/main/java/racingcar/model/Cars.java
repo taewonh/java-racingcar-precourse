@@ -15,6 +15,8 @@ public class Cars {
 
     private final List<Car> cars = new ArrayList<>();
 
+    private int attemptCount = 0;
+
     public void registerCars(String names) {
         checkNames(names);
         String[] split = names.split(",");
@@ -39,21 +41,21 @@ public class Cars {
         return cars;
     }
 
-    public void inputCount(String count) {
-        if (count == null) {
+    public void inputAttemptCount(String attemptCount) {
+        if (attemptCount == null) {
             throw new IllegalArgumentException("이동 횟수에 공백 입력은 허용되지 않습니다.");
         }
-        if ("0".equals(count)) {
+        if ("0".equals(attemptCount)) {
             throw new IllegalArgumentException("이동 횟수에 0은 지정할 수 없습니다.");
         }
         try {
-            Integer.parseInt(count);
+            this.attemptCount = Integer.parseInt(attemptCount);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("숫자가 아닌 문자는 입력할 수 없습니다.");
         }
     }
 
-    public int getCount() {
-        return 5;
+    public int getAttemptCount() {
+        return attemptCount;
     }
 }

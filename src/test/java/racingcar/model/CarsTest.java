@@ -41,8 +41,8 @@ public class CarsTest {
     public void testInputAttemptCount() {
         Cars cars = new Cars();
         String count = "5";
-        cars.inputCount(count);
-        Assertions.assertEquals(Integer.parseInt(count), cars.getCount());
+        cars.inputAttemptCount(count);
+        Assertions.assertEquals(Integer.parseInt(count), cars.getAttemptCount());
     }
 
     @Test
@@ -50,7 +50,7 @@ public class CarsTest {
     public void testInputEmptyAttemptCount() {
         Cars cars = new Cars();
         Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
-            cars.inputCount(null);
+            cars.inputAttemptCount(null);
         });
     }
 
@@ -59,7 +59,7 @@ public class CarsTest {
     public void testInputNotIntegerAttemptCount() {
         Cars cars = new Cars();
         Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
-            cars.inputCount("null");
+            cars.inputAttemptCount("null");
         });
     }
 
@@ -68,7 +68,7 @@ public class CarsTest {
     public void testInputZeroAttemptCount() {
         Cars cars = new Cars();
         Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
-            cars.inputCount("0");
+            cars.inputAttemptCount("0");
         });
     }
 }
