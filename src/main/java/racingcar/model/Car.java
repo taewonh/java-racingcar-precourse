@@ -1,22 +1,19 @@
 package racingcar.model;
 
-import racingcar.utils.RandomNumberUtil;
+import racingcar.utils.NumberGenerator;
 
 public class Car {
 
     private final String name;
 
-    private int progress = 0;
+    private int position = 0;
 
-    private RandomNumberUtil randomNumberUtil;
+    private final NumberGenerator numberGenerator;
 
-    public void setRandomNumberUtil(RandomNumberUtil randomNumberUtil) {
-        this.randomNumberUtil = randomNumberUtil;
-    }
-
-    public Car(String name) {
+    public Car(String name, NumberGenerator numberGenerator) {
         checkName(name);
         this.name = name;
+        this.numberGenerator = numberGenerator;
     }
 
     private static void checkName(String name) {
@@ -28,18 +25,18 @@ public class Car {
         }
     }
 
-    public void increase() {
-        increaseProgress(randomNumberUtil.generateNumber());
+    public void movePosition() {
+        movePosition(numberGenerator.generate());
     }
 
-    private void increaseProgress(int num) {
-        if (num >= 4) {
-            progress++;
+    private void movePosition(int randomNumber) {
+        if (randomNumber >= 4) {
+            position++;
         }
     }
 
-    public int getProgress() {
-        return progress;
+    public int getPosition() {
+        return position;
     }
 
     public String getName() {
