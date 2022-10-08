@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import racingcar.utils.NumberGenerator;
 
-public class Cars {
+public class Race {
 
     private static final int START_NUMBER = 1;
 
@@ -13,7 +13,7 @@ public class Cars {
 
     private final NumberGenerator numberGenerator = () -> Randoms.pickNumberInRange(START_NUMBER, END_NUMBER);
 
-    private final List<Car> cars = new ArrayList<>();
+    private final List<Car> registeredCars = new ArrayList<>();
 
     private int attemptCount = 0;
 
@@ -35,10 +35,10 @@ public class Cars {
     }
 
     private void registerCar(String name) {
-        cars.add(new Car(name, numberGenerator));
+        registeredCars.add(new Car(name, numberGenerator));
     }
-    public List<Car> getCars() {
-        return cars;
+    public List<Car> getRegisteredCars() {
+        return registeredCars;
     }
 
     public void inputAttemptCount(String attemptCount) {
