@@ -2,12 +2,14 @@ package racingcar.model;
 
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CarsTest {
 
     @Test
-    public void 자동차_추가() {
+    @DisplayName("자동차 목록 입력")
+    public void testRegisterCars() {
         String names = "pobi,crong,honux";
         Cars cars = new Cars();
         cars.registerCars(names);
@@ -16,7 +18,8 @@ public class CarsTest {
     }
 
     @Test
-    public void 공백_자동차_추가() {
+    @DisplayName("자동차 목록 입력 시 공백 문자 or null 입력")
+    public void testRegisterEmptyCars() {
         Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
             new Cars().registerCars(null);
         });
@@ -26,14 +29,16 @@ public class CarsTest {
     }
 
     @Test
-    public void 자동차_한대만_추가() {
+    @DisplayName("자동차 1대만 존재하는 목록 입력")
+    public void testRegisterCar() {
         Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
             new Cars().registerCars("pobi");
         });
     }
 
     @Test
-    public void 이동_횟수_입력() {
+    @DisplayName("시도 횟수 입력")
+    public void testInputAttemptCount() {
         Cars cars = new Cars();
         String count = "5";
         cars.inputCount(count);
@@ -41,7 +46,8 @@ public class CarsTest {
     }
 
     @Test
-    public void 이동_횟수_미입력_테스트() {
+    @DisplayName("시도 횟수 공백 입력")
+    public void testInputEmptyAttemptCount() {
         Cars cars = new Cars();
         Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
             cars.inputCount(null);
@@ -49,7 +55,8 @@ public class CarsTest {
     }
 
     @Test
-    public void 이동_횟수_숫자가_아닌_문자_입력_테스트() {
+    @DisplayName("숫자가 아닌 시도 횟수 입력")
+    public void testInputNotIntegerAttemptCount() {
         Cars cars = new Cars();
         Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
             cars.inputCount("null");
@@ -57,7 +64,8 @@ public class CarsTest {
     }
 
     @Test
-    public void 이동_횟수_0_입력_테스트() {
+    @DisplayName("시도 횟수 0 입력")
+    public void testInputZeroAttemptCount() {
         Cars cars = new Cars();
         Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
             cars.inputCount("0");
