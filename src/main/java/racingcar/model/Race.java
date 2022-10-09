@@ -58,14 +58,14 @@ public class Race {
         StringBuilder builder = new StringBuilder();
         builder.append(Messages.WINNERS.toString());
         for (Car car : cars) {
-            buildWinner(builder, car);
+            appendWinner(builder, car);
         }
         builder.setLength(builder.length() - 2);
         Messages.EMPTY.println(builder.toString());
     }
 
-    private void buildWinner(StringBuilder builder, Car car) {
-        if (car.getPosition() == topPosition) {
+    private void appendWinner(StringBuilder builder, Car car) {
+        if (car.getPosition().equals(topPosition)) {
             builder.append(car.getName()).append(Messages.COMMA.toString()).append(Messages.BLANK.toString());
         }
     }
