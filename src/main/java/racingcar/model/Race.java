@@ -53,7 +53,7 @@ public class Race {
     }
 
     public void inputAttemptCount(String attemptCount) {
-        if (attemptCount == null) {
+        if ("".equals(attemptCount)) {
             throw new IllegalArgumentException("이동 횟수에 공백 입력은 허용되지 않습니다.");
         }
         if ("0".equals(attemptCount)) {
@@ -68,6 +68,10 @@ public class Race {
 
     public boolean notRegisteredCars() {
         return registeredCars.isEmpty();
+    }
+
+    public boolean isZeroAttemptCount() {
+        return attemptCount == 0;
     }
 
     public int getAttemptCount() {

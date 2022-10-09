@@ -17,11 +17,23 @@ public class RaceController {
         while (race.notRegisteredCars()) {
             inputRegisterCarNames();
         }
+        System.out.println("시도할 회수는 몇회인가요?");
+        while (race.isZeroAttemptCount()) {
+            inputAttemptCount();
+        }
     }
 
     private void inputRegisterCarNames() {
         try {
             race.registerCars(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e);
+        }
+    }
+
+    private void inputAttemptCount() {
+        try {
+            race.inputAttemptCount(Console.readLine());
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
         }

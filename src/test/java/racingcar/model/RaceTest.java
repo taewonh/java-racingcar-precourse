@@ -47,7 +47,7 @@ public class RaceTest {
     public void testInputEmptyAttemptCount() {
         Race race = new Race();
         Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
-            race.inputAttemptCount(null);
+            race.inputAttemptCount("");
         });
     }
 
