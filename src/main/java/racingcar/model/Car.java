@@ -31,7 +31,7 @@ public class Car {
     }
 
     public void move() {
-        position.move(numberGenerator.generate());
+        position.update(numberGenerator.generate());
     }
 
     public String getName() {

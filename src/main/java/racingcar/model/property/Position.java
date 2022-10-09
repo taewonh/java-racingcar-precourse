@@ -8,7 +8,7 @@ public class Position {
         number = 0;
     }
 
-    public void move(int number) {
+    public void update(int number) {
         if (number >= 4) {
             this.number++;
         }
