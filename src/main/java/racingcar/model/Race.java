@@ -26,9 +26,7 @@ public class Race {
     }
 
     public void inputAttemptCount(String attemptCount) {
-        if (Messages.EMPTY.equals(attemptCount) || Messages.ZERO.equals(attemptCount)) {
-            throw new IllegalArgumentException(Messages.NOT_INPUT_ATTEMPT_COUNT.toString());
-        }
+        validateAttemptCount(attemptCount);
         try {
             this.attemptCount = Integer.parseInt(attemptCount);
         } catch (NumberFormatException e) {
@@ -52,9 +50,14 @@ public class Race {
         printWinners();
     }
 
-    private void validateCarNames(String carNames) {
-        if (Messages.EMPTY.equals(carNames)
-                || carNames.split(Messages.COMMA.toString()).length == 0) {
+    private static void validateAttemptCount(String attemptCount) {
+        if (Messages.EMPTY.equals(attemptCount) || Messages.ZERO.equals(attemptCount)) {
+            throw new IllegalArgumentException(Messages.NOT_INPUT_ATTEMPT_COUNT.toString());
+        }
+    }
+
+    private static void validateCarNames(String carNames) {
+        if (Messages.EMPTY.equals(carNames) || carNames.split(Messages.COMMA.toString()).length == 0) {
             throw new IllegalArgumentException(Messages.NOT_INPUT_REGISTER_CAR_NAMES.toString());
         }
     }
@@ -75,8 +78,7 @@ public class Race {
 
     private void printCar(Car car) {
         StringBuilder builder = new StringBuilder();
-        builder.append(car.getName())
-                .append(Messages.COLON.toString());
+        builder.append(car.getName()).append(Messages.COLON.toString());
         for (int count = 0; count < car.getPosition(); count++) {
             builder.append(Messages.HYPHEN.toString());
         }
@@ -95,9 +97,7 @@ public class Race {
 
     private void buildWinner(StringBuilder builder, Car car) {
         if (car.getPosition() == topPosition) {
-            builder.append(car.getName())
-                    .append(Messages.COMMA.toString())
-                    .append(Messages.BLANK.toString());
+            builder.append(car.getName()).append(Messages.COMMA.toString()).append(Messages.BLANK.toString());
         }
     }
 

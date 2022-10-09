@@ -9,27 +9,27 @@ public class Car {
     private int position = 0;
     private final NumberGenerator numberGenerator;
 
-    public static Car generate(String name, NumberGenerator generator) {
-        checkName(name);
-        return new Car(name, generator);
-    }
-
     private Car(String name, NumberGenerator numberGenerator) {
         this.name = name;
         this.numberGenerator = numberGenerator;
     }
 
-    private static void checkName(String name) {
+    public static Car generate(String name, NumberGenerator generator) {
+        validateName(name);
+        return new Car(name, generator);
+    }
+
+    public void movePosition() {
+        movePosition(numberGenerator.generate());
+    }
+
+    private static void validateName(String name) {
         if ("".equals(name)) {
             throw new IllegalArgumentException(Messages.INVALID_EMPTY_CAR_NAME.toString());
         }
         if (name.length() > 5) {
             throw new IllegalArgumentException(Messages.INVALID_LENGTH_CAR_NAME.toString());
         }
-    }
-
-    public void movePosition() {
-        movePosition(numberGenerator.generate());
     }
 
     private void movePosition(int randomNumber) {
