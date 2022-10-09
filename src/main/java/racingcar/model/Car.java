@@ -1,27 +1,30 @@
 package racingcar.model;
 
+import racingcar.common.Messages;
 import racingcar.utils.NumberGenerator;
 
 public class Car {
 
     private final String name;
-
     private int position = 0;
-
     private final NumberGenerator numberGenerator;
 
-    public Car(String name, NumberGenerator numberGenerator) {
+    public static Car generate(String name, NumberGenerator generator) {
         checkName(name);
+        return new Car(name, generator);
+    }
+
+    private Car(String name, NumberGenerator numberGenerator) {
         this.name = name;
         this.numberGenerator = numberGenerator;
     }
 
     private static void checkName(String name) {
         if ("".equals(name)) {
-            throw new IllegalArgumentException("자동차 이름에 공백 문자는 입력할 수 없습니다.");
+            throw new IllegalArgumentException(Messages.INVALID_EMPTY_CAR_NAME.toString());
         }
         if (name.length() > 5) {
-            throw new IllegalArgumentException("자동차 이름의 길이는 5글자 이하여야 합니다.");
+            throw new IllegalArgumentException(Messages.INVALID_LENGTH_CAR_NAME.toString());
         }
     }
 

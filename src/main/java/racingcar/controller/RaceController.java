@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import racingcar.common.Messages;
 import racingcar.model.Race;
 
 public class RaceController {
@@ -9,18 +10,25 @@ public class RaceController {
 
     public RaceController() {
         race = new Race();
-        readyToRace();
+        readyRace();
+        startRace();
     }
 
-    public void readyToRace() {
-        System.out.println("경주 할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
-        while (race.notRegisteredCars()) {
+    public void readyRace() {
+        Messages.INPUT_REGISTER_CAR_NAMES.println();
+        while (race.isNotRegisteredCars()) {
             inputRegisterCarNames();
         }
-        System.out.println("시도할 회수는 몇회인가요?");
-        while (race.isZeroAttemptCount()) {
+        Messages.INPUT_ATTEMPT_COUNT.println();
+        while (race.isNotInputAttemptCount()) {
             inputAttemptCount();
         }
+    }
+
+    public void startRace() {
+        Messages.EMPTY.println();
+        Messages.RESULT_EXECUTE.println();
+        race.start();
     }
 
     private void inputRegisterCarNames() {
@@ -40,6 +48,6 @@ public class RaceController {
     }
 
     private void printErrorMessage(Exception e) {
-        System.out.println("[ERROR] " + e.getMessage());
+        Messages.ERROR.println(e.getMessage());
     }
 }

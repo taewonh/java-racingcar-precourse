@@ -26,14 +26,6 @@ public class RaceTest {
     }
 
     @Test
-    @DisplayName("자동차 1대만 존재하는 목록 입력")
-    public void testRegisterCar() {
-        Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
-            new Race().registerCars("pobi");
-        });
-    }
-
-    @Test
     @DisplayName("시도 횟수 입력")
     public void testInputAttemptCount() {
         Race race = new Race();
