@@ -19,8 +19,25 @@ public class Car {
         return new Car(name, generator);
     }
 
+    public void print() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(name).append(Messages.COLON.toString());
+        for (int count = 0; count < position; count++) {
+            builder.append(Messages.HYPHEN.toString());
+        }
+        Messages.EMPTY.println(builder.toString());
+    }
+
     public void movePosition() {
         movePosition(numberGenerator.generate());
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public String getName() {
+        return name;
     }
 
     private static void validateName(String name) {
@@ -36,13 +53,5 @@ public class Car {
         if (randomNumber >= 4) {
             position++;
         }
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
-    public String getName() {
-        return name;
     }
 }
