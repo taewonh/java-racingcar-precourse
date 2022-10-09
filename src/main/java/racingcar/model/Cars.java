@@ -3,7 +3,7 @@ package racingcar.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import racingcar.common.Messages;
+import racingcar.model.property.CarName;
 
 public class Cars {
 
@@ -14,10 +14,11 @@ public class Cars {
     }
 
     public void addCars(String carNames) {
-        validateCarNames(carNames);
+        CarName.validateNames(carNames);
         List<Car> registerCars = new ArrayList<>();
         for (String name : carNames.split(",")) {
-            Car car = Car.generate(name, () -> Randoms.pickNumberInRange(1, 9));
+            CarName carName = CarName.generate(name);
+            Car car = Car.generate(carName, () -> Randoms.pickNumberInRange(1, 9));
             registerCars.add(car);
         }
         cars.addAll(registerCars);
@@ -25,11 +26,5 @@ public class Cars {
 
     public boolean isNotRegisteredCars() {
         return cars.isEmpty();
-    }
-
-    private static void validateCarNames(String carNames) {
-        if (Messages.EMPTY.equals(carNames) || carNames.split(Messages.COMMA.toString()).length == 0) {
-            throw new IllegalArgumentException(Messages.NOT_INPUT_REGISTER_CAR_NAMES.toString());
-        }
     }
 }

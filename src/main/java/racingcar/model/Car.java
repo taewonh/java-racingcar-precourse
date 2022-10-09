@@ -1,27 +1,27 @@
 package racingcar.model;
 
 import racingcar.common.Messages;
+import racingcar.model.property.CarName;
 import racingcar.utils.NumberGenerator;
 
 public class Car {
 
-    private final String name;
+    private final CarName name;
     private int position = 0;
     private final NumberGenerator numberGenerator;
 
-    private Car(String name, NumberGenerator numberGenerator) {
+    private Car(CarName name, NumberGenerator numberGenerator) {
         this.name = name;
         this.numberGenerator = numberGenerator;
     }
 
-    public static Car generate(String name, NumberGenerator generator) {
-        validateName(name);
+    public static Car generate(CarName name, NumberGenerator generator) {
         return new Car(name, generator);
     }
 
     public void print() {
         StringBuilder builder = new StringBuilder();
-        builder.append(name).append(Messages.COLON.toString());
+        builder.append(getName()).append(Messages.COLON.toString());
         for (int count = 0; count < position; count++) {
             builder.append(Messages.HYPHEN.toString());
         }
@@ -37,16 +37,7 @@ public class Car {
     }
 
     public String getName() {
-        return name;
-    }
-
-    private static void validateName(String name) {
-        if ("".equals(name)) {
-            throw new IllegalArgumentException(Messages.INVALID_EMPTY_CAR_NAME.toString());
-        }
-        if (name.length() > 5) {
-            throw new IllegalArgumentException(Messages.INVALID_LENGTH_CAR_NAME.toString());
-        }
+        return name.getName();
     }
 
     private void movePosition(int randomNumber) {
