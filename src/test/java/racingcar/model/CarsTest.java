@@ -12,7 +12,7 @@ public class CarsTest {
     public void testRegisterCars() {
         String names = "pobi,crong,honux";
         Cars race = new Cars();
-        race.addCars(names);
+        race.generateCars(names);
         List<Car> carList = race.getCars();
         Assertions.assertEquals(3, carList.size());
     }
@@ -21,7 +21,7 @@ public class CarsTest {
     @DisplayName("자동차 목록 입력 시 공백 문자 입력")
     public void testRegisterEmptyCars() {
         Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
-            new Cars().addCars("");
+            new Cars().generateCars("");
         });
     }
 }

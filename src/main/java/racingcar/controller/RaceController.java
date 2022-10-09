@@ -37,7 +37,7 @@ public class RaceController {
 
     private void inputRegisterCarNames() {
         try {
-            cars.addCars(Console.readLine());
+            cars.generateCars(Console.readLine());
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
         }
