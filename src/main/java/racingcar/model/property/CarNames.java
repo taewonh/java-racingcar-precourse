@@ -6,7 +6,7 @@ import racingcar.common.Messages;
 
 public class CarNames {
 
-    private final List<CarName> names = new ArrayList<>();
+    private final List<CarName> names;
 
     public static CarNames generate(String names) {
         validate(names);
@@ -17,13 +17,13 @@ public class CarNames {
         }
         return new CarNames(carNames);
     }
-    
+
     public List<CarName> getNames() {
         return names;
     }
 
     private CarNames(List<CarName> carNames) {
-        this.names.addAll(carNames);
+        this.names = carNames;
     }
 
     private static void validate(String names) {
