@@ -17,26 +17,37 @@ public class Race {
 
     private int attemptCount = 0;
 
-    public void registerCars(String names) {
-        checkNames(names);
-        String[] split = names.split(",");
-        for (String name : split) {
-            registerCar(name);
+    public void registerCars(String carNames) {
+        carNames = trimCarNames(carNames);
+        validateCarNames(carNames);
+        List<Car> cars = new ArrayList<>();
+        for (String carName : carNames.split(",")) {
+            Car car = generateCar(carName);
+            cars.add(car);
         }
+        registeredCars.addAll(cars);
     }
 
-    private void checkNames(String names) {
-        if (names == null || "".equals(names)) {
-            throw new IllegalArgumentException("자동차 이름에 공백은 허용되지 않습니다.");
+    private String trimCarNames(String carNames) {
+        return carNames.trim().replace(" ", "");
+    }
+
+    private void validateCarNames(String carNames) {
+        if ("".equals(carNames)) {
+            throw new IllegalArgumentException("참가할 자동차 이름 목록을 입력해주세요.");
         }
-        if (!names.contains(",")) {
+        if (!carNames.contains(",")) {
             throw new IllegalArgumentException("자동차는 2대 이상부터 등록할 수 있습니다.");
         }
+        if (carNames.split(",").length == 0) {
+            throw new IllegalArgumentException("참가할 자동차를 입력해주세요.");
+        }
     }
 
-    private void registerCar(String name) {
-        registeredCars.add(new Car(name, numberGenerator));
+    private Car generateCar(String carName) {
+        return new Car(carName, numberGenerator);
     }
+
     public List<Car> getRegisteredCars() {
         return registeredCars;
     }
@@ -53,6 +64,10 @@ public class Race {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("숫자가 아닌 문자는 입력할 수 없습니다.");
         }
+    }
+
+    public boolean notRegisteredCars() {
+        return registeredCars.isEmpty();
     }
 
     public int getAttemptCount() {

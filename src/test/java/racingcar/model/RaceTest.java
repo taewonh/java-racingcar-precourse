@@ -18,11 +18,8 @@ public class RaceTest {
     }
 
     @Test
-    @DisplayName("자동차 목록 입력 시 공백 문자 or null 입력")
+    @DisplayName("자동차 목록 입력 시 공백 문자 입력")
     public void testRegisterEmptyCars() {
-        Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
-            new Race().registerCars(null);
-        });
         Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> {
             new Race().registerCars("");
         });

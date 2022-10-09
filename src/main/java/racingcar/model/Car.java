@@ -17,8 +17,8 @@ public class Car {
     }
 
     private static void checkName(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException("자동차 이름을 지정해야 합니다.");
+        if ("".equals(name)) {
+            throw new IllegalArgumentException("자동차 이름에 공백 문자는 입력할 수 없습니다.");
         }
         if (name.length() > 5) {
             throw new IllegalArgumentException("자동차 이름의 길이는 5글자 이하여야 합니다.");

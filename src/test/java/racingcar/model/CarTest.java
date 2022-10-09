@@ -18,7 +18,7 @@ public class CarTest {
     @DisplayName("이름이 공백인 자동차 생성")
     public void testGenerateEmptyNameCar() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Car car = new Car(null, null);
+            Car car = new Car("", null);
         });
     }
 
