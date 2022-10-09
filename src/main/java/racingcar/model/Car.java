@@ -2,17 +2,19 @@ package racingcar.model;
 
 import racingcar.common.Messages;
 import racingcar.model.property.CarName;
+import racingcar.model.property.Position;
 import racingcar.utils.NumberGenerator;
 
 public class Car {
 
     private final CarName name;
-    private int position = 0;
+    private final Position position;
     private final NumberGenerator numberGenerator;
 
     private Car(CarName name, NumberGenerator numberGenerator) {
         this.name = name;
         this.numberGenerator = numberGenerator;
+        this.position = new Position();
     }
 
     public static Car generate(CarName name, NumberGenerator generator) {
@@ -22,27 +24,21 @@ public class Car {
     public void print() {
         StringBuilder builder = new StringBuilder();
         builder.append(getName()).append(Messages.COLON.toString());
-        for (int count = 0; count < position; count++) {
+        for (int count = 0; count < position.getNumber(); count++) {
             builder.append(Messages.HYPHEN.toString());
         }
         Messages.EMPTY.println(builder.toString());
     }
 
-    public void movePosition() {
-        movePosition(numberGenerator.generate());
-    }
-
-    public int getPosition() {
-        return position;
+    public void move() {
+        position.move(numberGenerator.generate());
     }
 
     public String getName() {
         return name.getName();
     }
 
-    private void movePosition(int randomNumber) {
-        if (randomNumber >= 4) {
-            position++;
-        }
+    public Position getPosition() {
+        return position;
     }
 }

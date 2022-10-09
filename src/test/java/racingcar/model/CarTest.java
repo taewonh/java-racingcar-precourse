@@ -21,8 +21,8 @@ public class CarTest {
     public void testMovePosition() {
         CarName carName = generateCarName("name");
         Car car = Car.generate(carName, () -> 4);
-        car.movePosition();
-        Assertions.assertEquals(1, car.getPosition());
+        car.move();
+        Assertions.assertEquals(1, car.getPosition().getNumber());
     }
 
     @Test
@@ -30,8 +30,8 @@ public class CarTest {
     public void testNotMovePosition() {
         CarName carName = generateCarName("name");
         Car car = Car.generate(carName, () -> 3);
-        car.movePosition();
-        Assertions.assertEquals(0, car.getPosition());
+        car.move();
+        Assertions.assertEquals(0, car.getPosition().getNumber());
     }
 
     private CarName generateCarName(String name) {

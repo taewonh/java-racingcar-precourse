@@ -2,11 +2,17 @@ package racingcar.model;
 
 import java.util.List;
 import racingcar.common.Messages;
+import racingcar.model.property.Position;
 
 public class Race {
 
-    private int attemptCount = 0;
-    private int topPosition = 0;
+    private int attemptCount;
+    private Position topPosition;
+
+    public Race() {
+        attemptCount = 0;
+        topPosition = new Position();
+    }
 
     public void inputAttemptCount(String attemptCount) {
         validateAttemptCount(attemptCount);
@@ -37,16 +43,15 @@ public class Race {
 
     private void progress(List<Car> cars) {
         for (Car car : cars) {
-            car.movePosition();
+            car.move();
             car.print();
             refreshTopPosition(car);
         }
     }
 
     private void refreshTopPosition(Car car) {
-        if (car.getPosition() > topPosition) {
-            topPosition = car.getPosition();
-        }
+        Position carPosition = car.getPosition();
+        topPosition = topPosition.compare(carPosition);
     }
 
     private void printWinners(List<Car> cars) {
