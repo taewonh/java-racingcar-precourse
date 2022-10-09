@@ -2,23 +2,19 @@
 ## 구현 기능 목록
 - 입력
   - [x] 쉼표 기준으로 전체 자동차 이름 입력받기
-    - [x] [예외] 공백 입력
-      - IllegalArgumentException("자동차 이름에 공백은 허용되지 않습니다.");
-    - [x] [예외] 입력한 자동차가 1대인 경우
-      - IllegalArgumentException("자동차는 2대 이상부터 등록할 수 있습니다.");
+    - [x] [예외] 공백 입력 혹은 콤마만 입력된 경우
+      - IllegalArgumentException("참가할 자동차 이름이 입력되지 않았습니다.");
   - 자동차 생성
     - [x] 자동차 객체 생성 (이름 입력받기)
     - [x] [예외] 자동차 이름 길이 : 0
-      - IllegalArgumentException("자동차 이름을 지정해야 합니다.")
+      - IllegalArgumentException("공백인 자동차 이름을 입력할 수 없습니다.")
     - [x] [예외] 자동차 이름 길이 : 5 초과
       - IllegalArgumentException("자동차 이름의 길이는 5 글자 이하여야 합니다.") 
   - 이동 횟수 입력
-    - [x] [예외] 0 입력
-      - IllegalArgumentException("이동 횟수에 0은 지정할 수 없습니다.");
+    - [x] [예외] 0 입력 혹은 입력되지 않는 경우
+      - IllegalArgumentException("이동 횟수가 입력되지 않았습니다.");
     - [x] [예외] 숫자가 아닌 다른 문자 입력
       - IllegalArgumentException("숫자가 아닌 문자는 입력할 수 없습니다."); 
-    - [x] [예외] 입력되지 않음
-      - IllegalArgumentException("이동 횟수에 공백 입력은 허용되지 않습니다."); 
 
 - 자동차 경주 진행
   - [X] 랜덤 값 생성 (1-9, 4 이상 전진, 3 이하 멈춤)
