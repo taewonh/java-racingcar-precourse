@@ -4,38 +4,31 @@ import camp.nextstep.edu.missionutils.Console;
 import racingcar.common.Messages;
 import racingcar.model.Cars;
 import racingcar.model.Race;
+import racingcar.model.RaceCount;
+import racingcar.model.RacePosition;
 
 public class RaceController {
 
-    private final Race race;
-
-    private final Cars cars;
-
     public RaceController() {
-        race = new Race();
-        cars = new Cars();
-        readyRace();
-        startRace();
-    }
-
-    public void readyRace() {
-        Messages.INPUT_REGISTER_CAR_NAMES.println();
-        while (cars.isNotRegisteredCars()) {
-            inputRegisterCarNames();
-        }
-        Messages.INPUT_ATTEMPT_COUNT.println();
-        while (race.isNotInputAttemptCount()) {
-            inputAttemptCount();
-        }
-    }
-
-    public void startRace() {
+        Cars cars = generateCars();
+        RaceCount raceCount = generateRaceCount();
+        RacePosition topPosition = new RacePosition();
+        Race race = new Race(raceCount, topPosition);
         Messages.EMPTY.println();
         Messages.RESULT_EXECUTE.println();
         race.start(cars.getCars());
     }
 
-    private void inputRegisterCarNames() {
+    private Cars generateCars() {
+        Cars cars = new Cars();
+        Messages.PLEASE_INPUT_CAR_NAMES.println();
+        while (cars.isNotRegisteredCars()) {
+            inputRegisterCarNames(cars);
+        }
+        return cars;
+    }
+
+    private void inputRegisterCarNames(Cars cars) {
         try {
             cars.generateCars(Console.readLine());
         } catch (IllegalArgumentException e) {
@@ -43,12 +36,23 @@ public class RaceController {
         }
     }
 
-    private void inputAttemptCount() {
+    private RaceCount generateRaceCount() {
+        RaceCount raceCount = null;
+        Messages.PLEASE_INPUT_RACE_COUNT.println();
+        while (raceCount == null) {
+            raceCount = inputRaceCountNumber();
+        }
+        return raceCount;
+    }
+
+    private RaceCount inputRaceCountNumber() {
+        RaceCount raceCount = null;
         try {
-            race.inputAttemptCount(Console.readLine());
+            raceCount = RaceCount.generate(Console.readLine());
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
         }
+        return raceCount;
     }
 
     private void printErrorMessage(Exception e) {

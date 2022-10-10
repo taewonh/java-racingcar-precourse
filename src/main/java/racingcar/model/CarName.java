@@ -1,8 +1,10 @@
-package racingcar.model.property;
+package racingcar.model;
 
 import racingcar.common.Messages;
 
 public class CarName {
+
+    private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
 
@@ -11,7 +13,7 @@ public class CarName {
         return new CarName(name);
     }
 
-    public String getName() {
+    public String get() {
         return name;
     }
 
@@ -20,11 +22,11 @@ public class CarName {
     }
 
     private static void validate(String name) {
-        if ("".equals(name)) {
-            throw new IllegalArgumentException(Messages.INVALID_EMPTY_CAR_NAME.toString());
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException(Messages.ERROR_EMPTY_CAR_NAME.toString());
         }
-        if (name.length() > 5) {
-            throw new IllegalArgumentException(Messages.INVALID_LENGTH_CAR_NAME.toString());
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(Messages.ERROR_LENGTH_CAR_NAME.toString());
         }
     }
 }

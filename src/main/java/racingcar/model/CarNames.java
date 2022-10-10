@@ -1,4 +1,4 @@
-package racingcar.model.property;
+package racingcar.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class CarNames {
         return new CarNames(carNames);
     }
 
-    public List<CarName> getNames() {
+    public List<CarName> get() {
         return names;
     }
 
@@ -28,7 +28,7 @@ public class CarNames {
 
     private static void validate(String names) {
         if (Messages.EMPTY.equals(names) || names.split(Messages.COMMA.toString()).length == 0) {
-            throw new IllegalArgumentException(Messages.NOT_INPUT_REGISTER_CAR_NAMES.toString());
+            throw new IllegalArgumentException(Messages.ERROR_EMPTY_CAR_NAMES.toString());
         }
     }
 }

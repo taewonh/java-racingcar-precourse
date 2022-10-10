@@ -3,7 +3,6 @@ package racingcar.model;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.model.property.CarName;
 
 public class CarTest {
 
@@ -22,7 +21,7 @@ public class CarTest {
         CarName carName = generateCarName("name");
         Car car = Car.generate(carName, () -> 4);
         car.move();
-        Assertions.assertEquals(1, car.getPosition().getNumber());
+        Assertions.assertEquals(1, car.getPosition().get());
     }
 
     @Test
@@ -31,7 +30,7 @@ public class CarTest {
         CarName carName = generateCarName("name");
         Car car = Car.generate(carName, () -> 3);
         car.move();
-        Assertions.assertEquals(0, car.getPosition().getNumber());
+        Assertions.assertEquals(0, car.getPosition().get());
     }
 
     private CarName generateCarName(String name) {
